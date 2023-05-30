@@ -1,17 +1,20 @@
 from django.urls import path
 from . import views
+from .views import ProfileShow, ProfilePersonal, Register, Login, Logout
+
+app_name = 'auth'
 
 urlpatterns = [
-    path('login/', views.user_login,
+    path('login/', Login.as_view(),
          name='login'),
-    path('logout/', views.logouts,
+    path('logout/', Logout.as_view(),
          name='logouts'),
-    path('register/', views.register,
+    path('register/', Register.as_view(),
          name='register'),
     path('edit_profile/', views.edit,
          name='edit'),
-    path('profile', views.profile,
+    path('profile/', ProfileShow.as_view(),
          name='profile'),
-    path('profile_personal', views.profile_personal,
-         name='profile_personal'),
+    path('profile_personal/', ProfilePersonal.as_view(),
+         name='profile_personal')
 ]

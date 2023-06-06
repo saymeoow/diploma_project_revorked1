@@ -1,5 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
 <head>
 <meta charset="utf-8" />
 <title>{% block title %}Магазин{% endblock %}</title>
@@ -9,6 +8,7 @@
 <link rel="stylesheet" href="/static/css/support.css">
 </head>
 <body>
+
 <div id="header">
 <a href="/" class="btn btn-light mb-6">Мой магазин</a>
 <div id="subheader">
@@ -17,6 +17,7 @@
     <a class="btn mb-4" href="/mail/contact">Поддержка</a>
     {% if request.user.is_authenticated %}
     <a class="btn mb-4" href="/add_sneakers">Добавить товар</a>
+    <a class="btn mb-4" href="/search">Poisk</a>
     {% endif %}
 <div class="cart">
     {% if request.user.is_authenticated %}
@@ -38,10 +39,15 @@
         <a class="btn mb-4">Корзина пустая</a>
     {% endif %}
     {% endwith %}
+
 </div>
 </div>
 </div>
 <div id="content">
+    <form action="{% url 'store:search' %}" method="get">
+        <input type="search" name="q" placeholder="...">
+        <button type="submit">Поиск</button>
+    </form>
 {% block content %}{% endblock %}
 </div>
 

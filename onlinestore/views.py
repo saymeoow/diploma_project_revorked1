@@ -69,7 +69,7 @@ class AddSneakersView(FormView):
 
 class Search(ListView):
     context_object_name = 'search'
-    template_name = 'list.html'
+    template_name = 'search.html'
 
     def get_queryset(self):
         return Sneakers.objects.filter(name__contains=self.request.GET.get('q'))

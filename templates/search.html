@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Поиск{% endblock %}
+{% block content %}
+
+{% for sneakers in search %}
+<div class="item" align="center">
+<a href="{{ sneakers.get_absolute_url }}">
+    <img width="600" height="240" src="{% if sneakers.img %}{{ sneakers.img.url }}{%else %}{% static 'img/no_img.png' %}{% endif %}">
+</a>
+<a href="{{ sneakers.get_absolute_url }}">{{ sneakers.name }}</a>
+<br>
+{{ sneakers.price }}
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model
 from django.template.context_processors import csrf
@@ -59,6 +60,12 @@ class Register(CreateView):
     template_name = 'register.html'
     form_class = UserRegistrationForm
     success_url = '/'
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            redirect_to = '/'
+            return HttpResponseRedirect(redirect_to)
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         return super().form_valid(form)

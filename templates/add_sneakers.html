@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Создание Товара
+{% endblock %}
+
+{% block content %}
+
+<h1>Создайте ваш товар</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="Submit" value="Создать">
+</form>
+
+{% endblock %}

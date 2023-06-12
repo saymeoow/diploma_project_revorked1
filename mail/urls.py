@@ -1,9 +1,9 @@
 from django.urls import path
-from . import views
+from .views import SendMailView, SuccessView
 
 app_name = 'mail'
 
 urlpatterns = [
-    path('contact/', views.contact_view, name='contact'),
-    path('success/', views.success_view, name='success'),
+    path('contact/', SendMailView.as_view(), name='contact'),
+    path('success/', SuccessView.as_view(), name='success')
 ]

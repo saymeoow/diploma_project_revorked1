@@ -2,6 +2,18 @@
 {% load static %}
 {% block title %}
 {{ sneakers.name }}
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 17, 2023 - 16:14:26
+Django version 4.2.1, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+[17/May/2023 16:14:30] "GET / HTTP/1.1" 200 2380
+[17/May/2023 16:14:34] "GET /1/samba HTTP/1.1" 200 2070
+
 {% endblock %}
 
 {% block content %}
@@ -14,7 +26,7 @@
 </h2>
 <p class="price">${{ sneakers.price }}</p>
     <form action="{% url 'cart:cart_add' sneakers.id %}" method='post'>
-        {{ cart_sneakers_form }}
+        {{ form }}
         {% csrf_token %}
         {% if request.user.is_authenticated %}
         <input class="btn-secondary mb-6" type="submit" value="В корзину">

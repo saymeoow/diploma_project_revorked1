@@ -10,7 +10,7 @@
 <h1>Создайте свой аккаунт</h1>
     <p>Для регистрации заполните следующую форму:</p>
         <form action="/auth/register/" method="post">
-            {{ user_form.as_p }}
+            {{ form.as_p }}
             {% csrf_token %}
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <p><input class="btn btn-primary mb-2" type="submit" value="Зарегистрироваться"></p>

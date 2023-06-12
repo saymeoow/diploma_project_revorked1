@@ -21,7 +21,7 @@ class Company(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('store:sneakers_by_company', args=[self.slug])
+        return reverse('company', kwargs={'company_slug': self.slug})
 
 
 class Sneakers(models.Model):

@@ -126,3 +126,8 @@ CART_SESSION_ID = 'cart'
 RECIPIENTS_EMAIL = ['meowizy94@gmail.com']
 DEFAULT_FROM_EMAIL = 'meowizy94@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+REGISTRATION_REDIRECT_URL = '/'

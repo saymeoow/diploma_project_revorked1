@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import SneakersList, SneakersCompany, SneakersDetail, SneakersDetailView, Support, AddSneakersView
+from .views import SneakersList, SneakersCompany, SneakersDetail, Support, AddSneakersView, FakeUrlComment, Search
 
 app_name = 'store'
 
@@ -13,8 +13,10 @@ urlpatterns = [
          name='company'),
     path('<int:id>/<slug:slug>', SneakersDetail.as_view(),
          name='sneakers_detail'),
-    path('<int:id>/<slug:slug>', SneakersDetailView.as_view(),
-         name='sneaker_detail'),
     path('add_sneakers', AddSneakersView.as_view(),
-         name='add_sneakers')
+         name='add_sneakers'),
+    path('thanks_for_comment', FakeUrlComment.as_view(),
+         name='fake'),
+    path('search', Search.as_view(),
+         name='search')
 ]

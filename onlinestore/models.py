@@ -1,5 +1,6 @@
 from django.urls import reverse
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Company(models.Model):
@@ -71,3 +72,31 @@ class Sneakers(models.Model):
 
     def get_absolute_url(self):
         return reverse('store:sneakers_detail', args=[self.id, self.slug])
+
+
+class Comments(models.Model):
+    comment_text = models.CharField(
+        max_length=1000,
+        verbose_name='Ваш комментарий'
+    )
+    comment_time = models.DateTimeField(
+        auto_now_add=True
+    )
+    comment_model = models.ForeignKey(
+        Sneakers,
+        on_delete=models.CASCADE,
+        related_name='some_comment'
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+        def __str__(self):
+            return self.comment_text
+

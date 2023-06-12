@@ -1,21 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}
-{{ sneakers.name }}
-Watching for file changes with StatReloader
-Performing system checks...
-
-System check identified no issues (0 silenced).
-May 17, 2023 - 16:14:26
-Django version 4.2.1, using settings 'config.settings'
-Starting development server at http://127.0.0.1:8000/
-Quit the server with CONTROL-C.
-
-[17/May/2023 16:14:30] "GET / HTTP/1.1" 200 2380
-[17/May/2023 16:14:34] "GET /1/samba HTTP/1.1" 200 2070
-
-{% endblock %}
-
+{% block title %}{% endblock %}
 {% block content %}
 <div class="sneakers-detail">
 <img src="{% if sneakers.img %}{{ sneakers.img.url }}{% else %}
@@ -26,7 +11,7 @@ Quit the server with CONTROL-C.
 </h2>
 <p class="price">${{ sneakers.price }}</p>
     <form action="{% url 'cart:cart_add' sneakers.id %}" method='post'>
-        {{ form }}
+
         {% csrf_token %}
         {% if request.user.is_authenticated %}
         <input class="btn-secondary mb-6" type="submit" value="В корзину">
@@ -36,6 +21,7 @@ Quit the server with CONTROL-C.
 </div>
         {% endif %}
     </form>
+
 {{ sneakers.description|linebreaks }}
 
     <script>
@@ -44,5 +30,22 @@ function myFunction() {
     popup.classList.toggle("show");
 }
 </script>
+    <strong>Комментарии({{ sneakers.some_comment.all.count }}):</strong>
+    <ul>
+    {% for comment in sneakers.some_comment.all %}
+<hr>
+        <strong>{{ comment.author }}:</strong></br>
+        {{comment.comment_text}}</br>
+        {{ comment.comment_time }}</br>
+    </ul>
+    {% endfor %}
+    <hr/>
+        <strong>Оставьте свой комментарий</strong>
+    <div>
+    <form action="" id="add_form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input class="btn btn-primary mb-2" type="submit" value="Отправить"></p>
+    </form>
 </div>
-{% endblock %}
+    {% endblock %}

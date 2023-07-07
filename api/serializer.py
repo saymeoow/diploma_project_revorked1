@@ -4,6 +4,12 @@ from onlinestore.models import Sneakers
 
 
 class SneakersSerializer(serializers.ModelSerializer):
+    some_comment = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='comment_text'
+    )
+
     class Meta:
         model = Sneakers
         fields = "__all__"

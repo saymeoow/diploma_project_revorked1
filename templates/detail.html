@@ -45,7 +45,22 @@ function myFunction() {
     <form action="" id="add_form" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        {% if request.user.is_authenticaded %}
         <p><input class="btn btn-primary mb-2" type="submit" value="Отправить"></p>
+        {% else %}
+        <div class="popup btn-secondary mb-6" onclick="newFunction()">В корзину
+  <span class="popuptext" id="Popup">Чтобы оставить комментарий необходимо авторизоваться</span>
+</div>
+        {% endif %}
+
+{{ sneakers.description|linebreaks }}
+
+    <script>
+function newFunction() {
+    var popup = document.getElementById("Popup");
+    popup.classList.toggle("show");
+}
+</script>
     </form>
 </div>
     {% endblock %}

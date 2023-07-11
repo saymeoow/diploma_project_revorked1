@@ -5,7 +5,6 @@ from .models import Company, Sneakers, Comments
 from django.shortcuts import render, get_object_or_404
 from cart.forms import CartAddSneakersForm
 from .forms import AddSneakersForm, CommentForm
-from django.shortcuts import HttpResponse
 
 
 class Support(TemplateView):

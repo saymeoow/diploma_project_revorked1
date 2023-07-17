@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'rest_framework.authtoken',
-    'djoser'
+    'djoser',
+    'middleware'
 ]
 
 MIDDLEWARE = [
@@ -44,6 +45,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'middleware.middleware.PathMethodTimeMiddleware',
+    'middleware.middleware.IsAuthenticateMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'

@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 
 urlpatterns = [
@@ -13,6 +14,9 @@ urlpatterns = [
     path('auth/', include('register.urls')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('mail/', include('mail.urls', namespace='mail')),
+    path('api/jwt/create/', TokenObtainPairView.as_view(), name="jwt_create"),
+    path('api/jwt/refresh/', TokenRefreshView.as_view(), name="token_refresh"),
+    path('api/jwt/verify/', TokenVerifyView.as_view(), name="token_verify")
 ]
 
 if settings.DEBUG:

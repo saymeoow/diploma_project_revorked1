@@ -27,16 +27,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'onlinestore.apps.StoreConfig',
+
+    'social_django',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
+    'djoser',
+
     'cart',
     'register',
     'orders',
     'mail.apps.MailConfig',
     'api',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'djoser',
     'middleware',
-    'rest_framework_simplejwt'
+
 ]
 
 MIDDLEWARE = [
@@ -163,3 +167,14 @@ SIMPLE_JWT = {
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '51708241'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'C0Kj2I9J52mF9c7Lxz1f'

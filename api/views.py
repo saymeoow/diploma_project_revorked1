@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
@@ -21,6 +22,7 @@ class SneakersViewSet(viewsets.ModelViewSet):
     queryset = Sneakers.objects.all()
     serializer_class = SneakersSerializer
     pagination_class = SneakersPagination
+    permission_classes = [IsAuthenticated]
 
     @action(methods=['get'], detail=True)
     def company(self, request, pk=None):

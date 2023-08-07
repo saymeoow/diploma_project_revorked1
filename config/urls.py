@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.template.defaulttags import url
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -16,7 +17,8 @@ urlpatterns = [
     path('mail/', include('mail.urls', namespace='mail')),
     path('api/jwt/create/', TokenObtainPairView.as_view(), name="jwt_create"),
     path('api/jwt/refresh/', TokenRefreshView.as_view(), name="token_refresh"),
-    path('api/jwt/verify/', TokenVerifyView.as_view(), name="token_verify")
+    path('api/jwt/verify/', TokenVerifyView.as_view(), name="token_verify"),
+    path('oauth/', include('social_django.urls', namespace='social'))
 ]
 
 if settings.DEBUG:

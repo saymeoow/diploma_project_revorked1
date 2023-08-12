@@ -1,0 +1,13 @@
+version: "3.10"
+
+
+services:
+  web:
+    image: sg_docker:latest
+    container_name: django_app
+    command: python manage.py runserver
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    network_mode: host

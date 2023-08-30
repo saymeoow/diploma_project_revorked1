@@ -1,6 +1,6 @@
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model
 from django.template.context_processors import csrf
@@ -10,6 +10,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .models import Profile
 from .forms import LoginForm, UserRegistrationForm
 from .forms import UserEditForm, ProfileEditForm
+from .tasks import profile_created
+
 User = get_user_model()
 
 # def user_login(request):
@@ -68,6 +70,8 @@ class Register(CreateView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
+        form.save()
+        profile_created(form.instance.username)
         return super().form_valid(form)
 
 
@@ -105,5 +109,4 @@ class ProfileShow(TemplateView):
 
 class ProfilePersonal(TemplateView):
     template_name = 'profile_personal.html'
-
 
